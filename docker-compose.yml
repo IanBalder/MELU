@@ -20,5 +20,4 @@ services:
     volumes:
       - ./frontend:/app  # Mount frontend directory
     ports:
-      - "8080:8080"  # Map port 3000 on host to port 3000 in container
-
+      - "8080:8080"
