@@ -1,23 +1,47 @@
-version: '3.8'  # Specify the version of Docker Compose
+version: '3.8'
 
 services:
-  backend:  # Backend service for Flask
-    build:
-      context: ./backend  # Path to the backend directory
-      dockerfile: Dockerfile  # Specify the Dockerfile for the backend
-    volumes:
-      - ./backend:/app  # Mount backend directory
-    ports:
-      - "5000:5000"  # Map port 5000 on host to port 5000 in container
+  db:
+    image: postgres:13
     environment:
-      - FLASK_ENV=development  # Set Flask environment to development
-      - FLASK_APP=app.py  # Specify your main Flask application file
-
-  frontend:  # Frontend service for React
-    build:
-      context: ./frontend  # Path to the frontend directory
-      dockerfile: Dockerfile  # Specify the Dockerfile for the frontend
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
     volumes:
-      - ./frontend:/app  # Mount frontend directory
+      - postgres_data1:/var/lib/postgresql/data
+      - ./backend/db/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - SQLALCHEMY_DATABASE_URI=postgresql://user:password@db:5432/database
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
     ports:
       - "8080:8080"
+    networks:
+      - app-network
+
+volumes:
+  postgres_data1:
+
+networks:
+  app-network:
