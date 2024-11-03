@@ -1,1 +1,18 @@
-backend/venv/
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python-specific logs
+*.log
+
+# Django/Flask specific
+*.sqlite3
+db.sqlite3
+migrations/
