@@ -21,7 +21,13 @@ def home():
 @app.route("/test-insert", methods=["POST"])
 def test_insert():
     try:
-        new_user = User(name="testuser", email="testuser@example.com")
+        # Extract data from the request JSON
+        data = request.json
+        new_user = User(
+            username=data.get("username"),  # Update to use username
+            password=data.get("password"),  # Password field
+            email=data.get("email")         # Email field
+        )
         db.session.add(new_user)
         db.session.commit()
         return jsonify(message="User added successfully"), 201
@@ -33,7 +39,13 @@ def test_insert():
 def test_fetch():
     try:
         users = User.query.all()
-        return jsonify(users=[{"id": user.id, "name": user.name, "email": user.email} for user in users])
+        # Update the response to include username and registration_date
+        return jsonify(users=[{
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "registration_date": user.registration_date.strftime('%Y-%m-%d %H:%M:%S')  # Format the timestamp
+        } for user in users])
     except Exception as e:
         return jsonify(error=str(e)), 500
 
