@@ -23,3 +23,9 @@ logs:
 clean:
 	docker-compose down --volumes --remove-orphans
 	docker system prune -f --volumes
+
+backend:
+	sudo docker exec -it iti0105-2024_backend_1 /bin/bash
+
+db:
+	sudo docker-compose exec db psql -U user -d database
