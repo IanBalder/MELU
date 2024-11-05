@@ -9,7 +9,10 @@ export default {
     <router-link to="/">
       <img class="home-logo" src="../assets/logo.svg" alt="MELU logo">
     </router-link>
-    <router-link class="login" to="/login">Login</router-link>
+    <div class="auth-links">
+      <router-link class="auth-link" to="/login">Login</router-link>
+      <router-link class="auth-link" to="/register">Register</router-link>
+    </div>
   </nav>
   <router-view/>
 </template>
@@ -20,21 +23,23 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #F4F1EB;
+  background-color: #eeeeee;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-.login {
-  width: 150px;
-  height: 60px;
-  background: #EFE2D4;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
-  border-radius: 15px;
+.auth-link {
   color: #333333;
   text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 25px;
+  font-weight: bold;
+}
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-links {
+  display: flex;
+  gap: 30px;
+  padding-right: 30px;
 }
 </style>
