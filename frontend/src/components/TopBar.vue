@@ -12,7 +12,6 @@ export default {
     <div class="auth-links">
       <router-link class="auth-link" to="/login">Login</router-link>
       <router-link class="auth-link" to="/register">Register</router-link>
-      <router-link class="auth-link" to="/about">Contacts</router-link>
     </div>
   </nav>
   <router-view/>
