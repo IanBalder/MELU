@@ -9,24 +9,32 @@ export default {
     <div class="container1">
       <div class="contact-details">
         <div class="contact-item">
-          <span>Email:</span>
-          <span>&lt;firma emaili aadress&gt;</span>
+          <span class="label">Email:</span>
+          <span class="value">&lt;firma emaili aadress&gt;</span>
+        </div>
+
+        <div class="contact-image">
+          <img class="dekoratsiooni_nool" src="@/assets/ContactNool.svg" alt="dekoratsioon" />
         </div>
 
         <div class="contact-item">
-          <span>Telefon:</span>
-          <span>&lt;firma telefoninumber&gt;</span>
+          <span class="label">Telefon:</span>
+          <span class="value">&lt;firma telefoninumber&gt;</span>
+        </div>
+
+        <div class="contact-image">
+          <img class="dekoratsiooni_nool" src="@/assets/ContactNool.svg" alt="dekoratsioon" />
         </div>
 
         <div class="contact-item">
-          <span>Aadress:</span>
-          <span>&lt;firma kontori aadress&gt;</span>
+          <span class="label">Aadress:</span>
+          <span class="value">&lt;firma kontori aadress&gt;</span>
         </div>
       </div>
 
       <!-- Nool, mis on paremal -->
       <div class="image-container right">
-        <img src="@/assets/ContactNool.svg" alt="Kontakt pilt" />
+        <img src="@/assets/ComponentsideNool.svg" alt="Kontakt pilt" />
       </div>
     </div>
     <!-- Nool, mis on all -->
@@ -40,36 +48,104 @@ export default {
 .contact-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: relative;
   margin-bottom: 1vw;
 }
 
+.contact-details {
+  padding: 1vw;
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 500px;
+  min-height: 150px;
+  height: auto;
+}
+
 .contact-item {
-  margin-bottom: 2vw;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1vw;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.contact-item .label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.contact-item .value {
+  font-weight: normal;
+  color: #333;
+  white-space: nowrap;
 }
 
 .image-container {
-  display: flex;
-  justify-content: center;
-  margin: 2vw 0;
+  position: absolute;
+  z-index: 0;
 }
 
-.image-container.horizontal {
-  width: 100%;
+.image-container.right {
+  top: -6vw;
+  left: 133%;
+  transform: translateX(-50%);
 }
 
-.image-container.vertical {
-  height: 100%;
+.image-container.bottom {
+  bottom: -27vw;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
 }
 
 .image-container img {
-  width: 50px;
+  height: 30vw;
+  width: auto;
 }
 
-.image-container.vertical {
-
+.contact-image {
+  text-align: left;
 }
 
-.image-container.horizontal {
-  transform: rotate(90deg) translateX(60vh);
+.dekoratsiooni_nool {
+  width: 200px;
+  height: auto;
 }
+
+/* Ainult suuremate ekraanide jaoks (contact-details) */
+@media (min-width: 1200px) {
+  .contact-details {
+    width: 50%;
+  }
+
+  .image-container.right {
+    top: -3.5vw;
+    left: calc(100% + 4.5vw);
+  }
+
+  .image-container.bottom {
+    bottom: -19.5vw;
+  }
+
+  .image-container img {
+    max-height: 23vw;
+    height: auto;
+  }
+}
+
+/* Ainult suuremate ekraanide jaoks (contact-item) */
+@media (min-width: 1200px) {
+  .contact-item {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: Left;
+    color: #000;
+  }
+
+  .dekoratsiooni_nool {
+    width: 220px;
+  }
+}
+
 </style>
