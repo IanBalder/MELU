@@ -48,7 +48,7 @@ Use `make` commands to streamline running the project. Common commands include:
 - **Run the project**:
     make up
 
-## With Docker
+### With Docker
 
 Use `docker` commands to run and build the project:
 
