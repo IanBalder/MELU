@@ -6,10 +6,8 @@
 2. [Prerequisites](#prerequisites)  
 3. [Setup](#setup)  
 4. [Usage](#usage)  
-   - [With `make`](#with-make)  
+   - [With Make](#with-make)  
    - [With Docker](#with-docker)  
-5. [API Documentation (if applicable)](#api-documentation)  
-6. [Troubleshooting](#troubleshooting)  
 
 ---
 
@@ -41,7 +39,7 @@ Ensure you have the following tools installed:
 
 ## Usage
 
-### With `make`
+### With Make
 
 Use `make` commands to streamline running the project. Common commands include:
 
