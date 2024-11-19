@@ -13,7 +13,7 @@
 
 ## Overview
 
-**Project Name** is a [brief description of your project]. It provides [specific functionality or purpose]. This application can be run using `make` or Docker for an efficient development and deployment workflow.
+**Melu** is a app where you can see menus and basic info about local bars. This application can be run using `make` or Docker for an efficient development and deployment workflow.
 
 ---
 
@@ -48,7 +48,7 @@ Use `make` commands to streamline running the project. Common commands include:
 - **Run the project**:
     make up
 
-## With `docker`
+## With Docker
 
 Use `docker` commands to run and build the project:
 
