@@ -1,40 +1,64 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-  <div class="profile-view">
-    <!-- Profiilipilt -->
-    <img class="profile-image" src="@/assets/human_logo.svg"/>
+  <div class="profile-container">
 
-    <!-- Kasutaja nimi ja e-mail -->
-    <h2>Peeter Nurmesalu <span class="edit-icon">✏️</span></h2>
-    <p>peeter.nurmesalu@gmail.com</p>
+    <!-- Profiili kaart -->
+    <div class="profile-card">
+      <div class="profile-view">
+        <!-- Profiilipilt -->
+        <img class="profile-image" src="@/assets/human_logo.svg" />
 
-    <button class="logout-button">Log out</button>
+        <!-- Kasutaja nimi ja e-mail -->
+        <h2>Peeter Nurmesalu <span class="edit-icon">✏️</span></h2>
+        <p>peeter.nurmesalu@gmail.com</p>
 
-    <div class="info-section">
-      <h3>Comments</h3>
-      <h3>Threads</h3>
+        <button class="logout-button">Log out</button>
+
+        <!-- Info sektsioon (nupud) -->
+        <div class="info-section">
+          <button class="info-button">Comments</button>
+          <button class="info-button">Threads</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProfileView'
-}
-</script>
-
 <style>
-.profile-view {
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #d8cec4;
+}
+
+.profile-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-  background-color: #f5f5f5;
+  height: 100%;
+  position: relative;
+  padding: 20px; /* Jäta servadele ruumi mobiilivaates */
+}
+
+.profile-card {
+  background-color: #fff;
+  padding: 5%; /* Suhteline polster */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%; /* Kohandub ekraaniga */
 }
 
 .profile-image {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin-bottom: 15px;
+  border-radius: 50%;
 }
 
 h2 {
@@ -42,23 +66,11 @@ h2 {
   margin: 0;
 }
 
-.edit-icon {
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 8px;
-}
-
-p {
-  color: #555;
-  font-size: 16px;
-  margin-top: 5px;
-}
-
 .logout-button {
   margin: 20px;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #e0e0e0;
+  background-color: #d8cec4;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -66,9 +78,29 @@ p {
 
 .info-section {
   display: flex;
-  gap: 40px;
-  font-size: 20px;
-  font-weight: bold;
+  gap: 20px;
+  justify-content: center;
   margin-top: 30px;
+  flex-wrap: wrap; /* Mobiilivaates liiguvad nupud uuele reale */
 }
+
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .profile-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .info-section {
+    gap: 10px;
+  }
+}
+
 </style>
