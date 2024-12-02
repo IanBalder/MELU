@@ -113,7 +113,7 @@ export default {
   height: auto;
 }
 
-/* Ainult suuremate ekraanide jaoks (contact-details) */
+/* Suuremate ekraanide jaoks */
 @media (min-width: 1200px) {
   .contact-details {
     width: 50%;
@@ -134,7 +134,7 @@ export default {
   }
 }
 
-/* Ainult suuremate ekraanide jaoks (contact-item) */
+/* Suuremate ekraanide jaoks */
 @media (min-width: 1200px) {
   .contact-item {
     font-size: 1.2rem;
@@ -148,4 +148,16 @@ export default {
   }
 }
 
+/* Väikeste ekraanide jaoks */
+@media (max-width: 768px) {
+  .image-container.right,
+  .image-container.bottom {
+    display: none;
+  }
+
+  .dekoratsiooni_nool {
+    display: block;
+    width: 160px;
+  }
+}
 </style>

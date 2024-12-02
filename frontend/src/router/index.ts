@@ -3,6 +3,7 @@ import LandingPage from '../views/LandingPage.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import ProfileView from "../views/ProfileView.vue";
+import BarMenuView from "../views/BarMenuView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -29,6 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile',
     name: 'profile',
     component: ProfileView,
+  },
+  {
+    path: '/barmenuview',
+    name: 'barmenuview',
+    component: BarMenuView,
   }
 ]
 

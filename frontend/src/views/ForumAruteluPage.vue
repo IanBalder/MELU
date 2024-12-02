@@ -91,39 +91,39 @@ import AruteluKast_Forum from "@/components/AruteluKast_Forum.vue";
 
 @media (min-width: 1200px) {
   .forum-container {
-    width: 100%; /* Täida ekraani laius */
-    max-width: 1600px; /* Lase konteineril olla kuni 1600px lai */
-    margin-top: 10vh; /* Liiguta konteinerit ülespoole suurematel ekraanidel */
+    width: 100%;
+    max-width: 1600px;
+    margin-top: 10vh;
     margin-left: auto;
-    margin-right: auto; /* Keskendame konteineri sisu */
-    padding: 32px; /* Rohkem ruumi suurematele ekraanidele */
-    min-height: 80vh; /* Tagab, et konteiner on vähemalt 80% ekraani kõrgusest */
+    margin-right: auto;
+    padding: 32px;
+    min-height: 80vh;
   }
 
   .discussion-stack {
-    gap: 60px; /* Suurematel ekraanidel suurendame vahelist ruumi */
+    gap: 60px;
   }
 
   .search-navigation {
-    width: 50%; /* Suurematel ekraanidel väiksem otsinguala */
+    width: 50%;
   }
 
   .search-box {
-    width: 150%; /* Kohandame otsingukasti laiust */
+    width: 150%;
   }
 }
 
 @media (min-width: 1600px) {
   .forum-container {
-    width: 95%; /* Täida ekraani laius */
-    max-width: 1800px; /* Lase konteineril olla kuni 1800px lai */
-    padding: 40px; /* Veelgi rohkem ruumi suurematele ekraanidele */
-    min-height: 85vh; /* Veel suurem konteiner kõrguses */
-    margin-top: 0.5vh; /* Veel suurem ülespoole liikumine suurematel ekraanidel */
+    width: 95%;
+    max-width: 1800px;
+    padding: 40px;
+    min-height: 85vh;
+    margin-top: 0.5vh;
   }
 
   .search-navigation {
-    width: 25%; /* Väiksem otsinguosa väga suurte ekraanide jaoks */
+    width: 25%;
   }
 }
 </style>

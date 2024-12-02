@@ -57,6 +57,7 @@
 </template>
 
 <style scoped>
+
 /* Üldine lehekülg */
 body {
   margin: 0;
@@ -90,7 +91,7 @@ body {
 .profile-image {
   width: 100px;
   height: 100px;
-  background-color: #ccc; /* Asenduspilt */
+  background-color: #ccc;
   border-radius: 50%;
   margin: 0 auto 10px;
 }
@@ -138,12 +139,16 @@ body {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.comment-input p {
+  margin-bottom: 15px;
+}
+
 .comment-input {
   margin-bottom: 20px;
 }
 
 .comment-input textarea {
-  width: 100%;
+  width: 95%;
   height: 60px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -164,11 +169,36 @@ body {
 .comment-avatar {
   width: 50px;
   height: 50px;
-  background-color: #ccc; /* Asenduspilt */
+  background-color: #ccc;
   border-radius: 50%;
 }
 
 .comment-content p {
   margin: 0;
+}
+
+/* Responsiivsus */
+@media (max-width: 768px) {
+  .drinks-section {
+    flex-direction: column;
+  }
+
+  .drinks-category {
+    margin-bottom: 20px;
+  }
+
+  .comment-input textarea {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    max-width: 90%;
+  }
+
+  .comments-section {
+    padding: 15px;
+  }
 }
 </style>

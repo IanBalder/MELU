@@ -1,3 +1,9 @@
+
+<script setup lang="ts">
+import Bar from '@/components/Bar.vue';
+
+</script>
+
 <template>
 
   <!-- Popular -->
@@ -88,14 +94,3 @@
 }
 </style>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import Bar from '@/components/Bar.vue'; // @ is an alias to /src
-
-@Options({
-  components: {
-    Bar,
-  },
-})
-export default class HomeView extends Vue {}
-</script>
