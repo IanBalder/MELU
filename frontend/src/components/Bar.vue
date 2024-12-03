@@ -1,16 +1,33 @@
 <script lang="ts">
-export default {
-  name: 'barView'
-}
+import { defineComponent } from "vue";
+import { fetchBars } from "@/services/barService";
+
+export default defineComponent({
+  name: "BarComponent",
+  data() {
+    return {
+      bars: [] as Array<{
+        id: number;
+        name: string;
+        address: string;
+        description: string;
+        open_hours: string;
+        image: string;
+      }>,
+      loading: true,
+      error: null as string | null,
+    };
+  },
+});
 </script>
 
 <template>
   <div class="bar-card">
-    <!-- Baaripilt -->
-    <img src="https://images.squarespace-cdn.com/content/v1/66d86247519ea05910ef4f62/78bd1a77-13b8-4553-84c3-c000b0aa748c/GiltBar-36-2.jpg" alt="Bar Image" class="bar-image" />
-
-    <!-- Nimi -->
-    <div class="bar-name">Möku</div>
+    <img :src="bar.image" alt="Bar Image" class="bar-image"/>
+    <div class="bar-name">{{ bar.name }}</div>
+    <p>Address: {{ bar.address }}</p>
+    <p>Description: {{ bar.description }}</p>
+    <p>Open Hours: {{ bar.open_hours }}</p>
   </div>
 </template>
 
@@ -25,7 +42,7 @@ export default {
   text-align: left;
 }
 
-.bar-image{
+.bar-image {
   width: 100%;
   height: 100px;
   display: block;
