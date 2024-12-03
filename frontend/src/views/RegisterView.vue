@@ -1,16 +1,9 @@
-<script>
+<script setup lang="ts">
+import { ref } from 'vue';
 import UserRegister from "@/components/UserRegister.vue";
 
-export default {
-  name: 'LoginPage',
-  components: {UserRegister},
-  data() {
-    return {
-      username: '',
-      password: ''
-    };
-  },
-};
+const username = ref('');
+const password = ref('');
 </script>
 
 <template>
