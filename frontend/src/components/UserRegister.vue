@@ -167,4 +167,38 @@ body {
 .btn:hover {
   background-color: #d8cec4;
 }
+
+/* Responsiivsus */
+@media (max-width: 600px) {
+  .content-container {
+    height: auto;
+    padding: 10px;
+  }
+
+  .container {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .logo img {
+    width: 60px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+
+  .form-group .icon {
+    top: 5px;
+    font-size: 22px;
+  }
+}
+
 </style>

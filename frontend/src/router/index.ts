@@ -38,6 +38,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/profile',
     name: 'profile',
     component: ProfileView,
+  },
+  {
+    path: '/barmenuview',
+    name: 'barmenuview',
+    component: BarMenuView,
   }
 ]
 
