@@ -5,46 +5,52 @@ import Bar from '@/components/Bar.vue';
 </script>
 
 <template>
-
-  <!-- Popular -->
-  <div class="popular">
-    <h1 class="text-popular">Popular</h1>
-    <div class="popular-bars">
-      <Bar />
-      <Bar />
-      <Bar />
-      <Bar />
-      <Bar />
+  <div>
+    <div v-if="loading">Loading...</div>
+    <div v-else-if="error" class="error">
+      <p>{{ error }}</p>
     </div>
-  </div>
+    <div v-else>
+      <!-- Popular Bars -->
+      <div class="popular">
+        <h1 class="text-popular">Popular</h1>
+        <div class="popular-bars">
+          <Bar
+            v-for="bar in bars.slice(0, 3)"
+            :key="bar.id"
+            :bar="bar"
+          />
+        </div>
+      </div>
 
-  <!-- Cheap -->
-  <div class="cheap">
-    <h1 class="text-cheap">Cheap</h1>
-    <div class="cheap-bars">
-      <Bar />
-      <Bar />
-      <Bar />
-      <Bar />
-      <Bar />
-    </div>
-  </div>
+      <!-- Cheap Bars -->
+      <div class="cheap">
+        <h1 class="text-cheap">Cheap</h1>
+        <div class="cheap-bars">
+          <Bar
+            v-for="bar in bars.slice(3, 6)"
+            :key="bar.id"
+            :bar="bar"
+          />
+        </div>
+      </div>
 
-  <!-- Expensive -->
-  <div class ="expensive">
-    <h1 class="text-expensive">Expensive</h1>
-    <div class="expensive-bars">
-      <Bar />
-      <Bar />
-      <Bar />
-      <Bar />
-      <Bar />
+      <!-- Expensive Bars -->
+      <div class="expensive">
+        <h1 class="text-expensive">Expensive</h1>
+        <div class="expensive-bars">
+          <Bar
+            v-for="bar in bars.slice(6, 9)"
+            :key="bar.id"
+            :bar="bar"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 /* Popular */
 .popular-bars {
   display: flex;
@@ -65,7 +71,7 @@ import Bar from '@/components/Bar.vue';
 .cheap-bars {
   display: flex;
   flex-direction: row;
-  gap: 20px
+  gap: 20px;
 }
 
 .text-cheap {
@@ -73,7 +79,7 @@ import Bar from '@/components/Bar.vue';
   display: flex;
 }
 
-.cheap{
+.cheap {
   margin: 20px;
 }
 
