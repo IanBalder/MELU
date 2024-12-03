@@ -3,6 +3,7 @@ from flask_cors import CORS
 from .db import db  # Import the `db` instance from db/__init__.py
 from .db.config import Config  # Import Config from db/config
 
+from .routes.bars_routes import bars_bp
 from .routes.users_routes import users_bp
 
 app = Flask(__name__)
@@ -17,6 +18,7 @@ with app.app_context():
 
 # Register blueprints
 app.register_blueprint(users_bp, url_prefix='/api')
+app.register_blueprint(bars_bp, url_prefix='/api')
 
 @app.route("/")
 def home():
