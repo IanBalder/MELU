@@ -1,3 +1,49 @@
+<script setup lang="ts">
+import {registerUser} from "@/services/userService";
+import {useRouter} from "vue-router";
+import {ref} from "vue";
+
+const router = useRouter();
+
+const username = ref('');
+const email = ref('');
+const password = ref('');
+
+const responseMessage = ref('');
+const isError = ref(false);
+const emailError = ref('');
+
+const validateEmail = (emailToCheck: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(emailToCheck);
+};
+
+async function register() {
+  emailError.value = '';
+  responseMessage.value = '';
+  isError.value = false;
+
+  // Validate email format
+  if (!validateEmail(email.value)) {
+    emailError.value = 'Invalid email format';
+    return;
+  }
+  try {
+    const response = await registerUser({
+      username: username.value,
+      email: email.value,
+      password: password.value,
+    });
+    if (response.status === 201) {
+      router.push('/dashboard'); // Redirect to dashboard
+    }
+  } catch (error) {
+    console.error('Error during registration:', error);
+    alert('Registration failed');
+  }
+}
+</script>
+
 <template>
   <div class="content-container">
     <div class="container">
@@ -17,6 +63,7 @@
         <div class="form-group">
           <span class="icon"> <img src="@/assets/human_logo.svg"> </span>
           <input type="text" placeholder="Email" v-model="email">
+          <p v-if="emailError" class="error-message" :style="{ color: isError ? 'green' : 'red' }">{{ emailError }}</p>
         </div>
         <div class="form-group">
           <span class="icon"> <img src="@/assets/lock.svg"> </span>
@@ -25,16 +72,18 @@
 
         <button type="submit" class="btn">Create new account</button>
       </form>
+
+      <p v-if="responseMessage" :style="{ color: isError ? 'red' : 'green' }">
+        {{ responseMessage }}
+      </p>
+
     </div>
   </div>
 </template>
 
-
 <style scoped>
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -118,37 +167,38 @@ body {
 .btn:hover {
   background-color: #d8cec4;
 }
+
+/* Responsiivsus */
+@media (max-width: 600px) {
+  .content-container {
+    height: auto;
+    padding: 10px;
+  }
+
+  .container {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .logo img {
+    width: 60px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+
+  .form-group .icon {
+    top: 5px;
+    font-size: 22px;
+  }
+}
+
 </style>
-
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { registerUser } from '@/services/userService';
-import { useRouter } from 'vue-router';
-
-export default defineComponent({
-    data() {
-        return {
-            username: '',
-            email: '',
-            password: '',
-        };
-    },
-    methods: {
-        async register() {
-            try {
-                const response = await registerUser({
-                    username: this.username,
-                    email: this.email,
-                    password: this.password,
-                });
-                this.$router.push('/dashboard'); // Redirect to dashboard
-            } catch (error) {
-                console.error('Error during registration:', error);
-                alert('Registration failed');
-            }
-        },
-    },
-});
-</script>
-

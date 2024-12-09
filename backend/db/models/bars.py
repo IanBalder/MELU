@@ -1,6 +1,6 @@
-from app import db
+from .. import db
 
-class User(db.Model):
+class Bar(db.Model):
     __tablename__ = 'bars'
 
     id = db.Column(db.Integer, primary_key=True)

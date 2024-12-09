@@ -4,18 +4,23 @@ from ..app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
+import re
 
 # Create the Blueprint for users
 users_bp = Blueprint('users', __name__)
 
 # Secret key for encoding JWTs (keep this safe, you may want to store it in environment variables)
 SECRET_KEY = 'su_ema'
-
+EMAIL_REGEX = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
 
 # Register new user
 @users_bp.route('/register', methods=['POST'])
 def register_user():
     data = request.get_json()
+    email = data.get('email')
+
+    if not re.match(EMAIL_REGEX, email):
+        return jsonify({'error': 'Invalid email format'}), 400
 
     # Hash the password before storing it using pbkdf2:sha256
     hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')

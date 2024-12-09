@@ -1,7 +1,5 @@
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 
-export default class HomeView extends Vue {}
 </script>
 
 <template>
