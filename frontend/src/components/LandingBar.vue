@@ -1,20 +1,11 @@
 <script lang="ts">
 export default {
-  name: 'TopBar',
+  name: 'LandingBar',
   methods: {
-    toggleMenu(event: Event) {
-      const isChecked = (event.target as HTMLInputElement).checked;
-      if (isChecked) {
-        document.body.classList.add('modal-open');
-      } else {
-        document.body.classList.remove('modal-open');
-      }
-    },
     closeMenu() {
       const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
       if (menuToggle) {
         menuToggle.checked = false;
-        document.body.classList.remove('modal-open');
       }
     }
   }
@@ -27,12 +18,12 @@ export default {
       <img class="home-logo" src="../assets/logo.svg" alt="MELU logo">
     </router-link>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" @change="toggleMenu">
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
     <label for="menu-toggle" class="hamburger">☰</label>
 
     <div class="auth-links">
-      <router-link class="auth-link" to="/main">Bars</router-link>
-      <router-link class="auth-link" to="/profile">Profile</router-link>
+      <router-link class="auth-link" to="/login">Login</router-link>
+      <router-link class="auth-link" to="/register">Register</router-link>
       <router-link class="auth-link" to="/about">Contacts</router-link>
     </div>
 
@@ -126,7 +117,7 @@ nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 250px;
+    width: 300px;
     height: 100vh;
     background-color: #eeeeee;
     padding: 20px;
@@ -134,12 +125,10 @@ nav {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     gap: 20px;
-    z-index: 10;
   }
 
   .hamburger {
     display: block;
-    z-index: 20;
   }
 
   .menu-toggle:checked + .hamburger + .auth-links {
@@ -148,7 +137,6 @@ nav {
 
   .close-menu {
     display: block;
-    z-index: 15;
   }
 
   .menu-toggle:checked ~ .close-menu {
