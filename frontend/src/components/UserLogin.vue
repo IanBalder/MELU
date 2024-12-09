@@ -220,9 +220,9 @@ body {
   .modal-open .form-group input {
     border-bottom: none;
   }
-    /* Jooned jäävad alles */
+
   .modal-open .form-group input {
-    border-bottom: 2px solid #333; /* Lisa joon tagasi */
+    border-bottom: 2px solid #333;
   }
 }
 
