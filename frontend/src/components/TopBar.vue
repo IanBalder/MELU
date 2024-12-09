@@ -2,10 +2,19 @@
 export default {
   name: 'topBar',
   methods: {
+    toggleMenu(event: Event) {
+      const isChecked = (event.target as HTMLInputElement).checked;
+      if (isChecked) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
+    },
     closeMenu() {
       const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
       if (menuToggle) {
         menuToggle.checked = false;
+        document.body.classList.remove('modal-open');
       }
     }
   }
@@ -18,7 +27,7 @@ export default {
       <img class="home-logo" src="../assets/logo.svg" alt="MELU logo">
     </router-link>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" @change="toggleMenu">
     <label for="menu-toggle" class="hamburger">☰</label>
 
     <div class="auth-links">
@@ -117,7 +126,7 @@ nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 300px;
+    width: 250px;
     height: 100vh;
     background-color: #eeeeee;
     padding: 20px;
@@ -125,10 +134,12 @@ nav {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     gap: 20px;
+    z-index: 10;
   }
 
   .hamburger {
     display: block;
+    z-index: 20;
   }
 
   .menu-toggle:checked + .hamburger + .auth-links {
@@ -137,6 +148,7 @@ nav {
 
   .close-menu {
     display: block;
+    z-index: 15;
   }
 
   .menu-toggle:checked ~ .close-menu {

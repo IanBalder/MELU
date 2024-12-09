@@ -149,6 +149,7 @@ body {
   border: none;
   border-bottom: 2px solid #333;
   background: transparent;
+  transition: border-bottom 0.3s ease;
 }
 
 .form-group .icon {
@@ -177,4 +178,53 @@ body {
   font-size: 14px;
   margin-top: 5px;
 }
+
+/* Responsiivsus */
+@media (max-width: 600px) {
+  .content-container {
+    height: auto;
+    padding: 10px;
+    position: relative;
+  }
+
+  .container {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    position: relative;
+  }
+
+  .logo img {
+    width: 60px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .form-group .icon {
+    top: 5px;
+    font-size: 22px;
+  }
+
+  .modal-open .container {
+    border: none;
+    box-shadow: none;
+  }
+
+  .modal-open .form-group input {
+    border-bottom: none;
+  }
+    /* Jooned jäävad alles */
+  .modal-open .form-group input {
+    border-bottom: 2px solid #333; /* Lisa joon tagasi */
+  }
+}
+
+
 </style>

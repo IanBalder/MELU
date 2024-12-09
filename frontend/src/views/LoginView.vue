@@ -1,6 +1,9 @@
 <script>
+import UserLogin from "@/components/UserLogin.vue";
+
 export default {
   name: 'LoginPage',
+  components: {UserLogin},
   data() {
     return {
       username: '',
@@ -9,7 +12,7 @@ export default {
   },
 };
 </script>
-
+<!--
 <template>
   <div class="content-container">
     <div class="container">
@@ -125,4 +128,10 @@ body {
 .btn:hover {
   background-color: #d8cec4;
 }
-</style>
+</style> -->
+
+<template>
+  <div>
+    <UserLogin />
+  </div>
+</template>

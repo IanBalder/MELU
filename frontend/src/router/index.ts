@@ -39,11 +39,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'profile',
     component: ProfileView,
   },
-  {
+  /*{
     path: '/barmenuview',
     name: 'barmenuview',
     component: BarMenuView,
-  }
+  } */
 ]
 
 const router = createRouter({
