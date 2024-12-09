@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: 'TopBar',
+  name: 'LandingBar',
   methods: {
     closeMenu() {
       const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
@@ -22,8 +22,8 @@ export default {
     <label for="menu-toggle" class="hamburger">☰</label>
 
     <div class="auth-links">
-      <router-link class="auth-link" to="/main">Bars</router-link>
-      <router-link class="auth-link" to="/profile">Profile</router-link>
+      <router-link class="auth-link" to="/login">Login</router-link>
+      <router-link class="auth-link" to="/register">Register</router-link>
       <router-link class="auth-link" to="/about">Contacts</router-link>
     </div>
 
