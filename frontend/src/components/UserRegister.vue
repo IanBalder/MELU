@@ -194,10 +194,24 @@ body {
     padding: 8px;
   }
 
-
   .form-group .icon {
     top: 5px;
     font-size: 22px;
+  }
+    .form-group .icon {
+    top: 5px;
+    font-size: 22px;
+  }
+  .modal-open .container {
+    border: none;
+    box-shadow: none;
+  }
+
+  .modal-open .form-group input {
+    border-bottom: none;
+  }
+  .modal-open .form-group input {
+    border-bottom: 2px solid #333;
   }
 }
 
