@@ -1,13 +1,6 @@
-<script>
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 import ContactBox from '@/components/ContactBox.vue';
 
-@Options({
-  components: {
-    ContactBox,
-  },
-})
-export default class AboutView extends Vue {}
 </script>
 
 <template>
@@ -98,7 +91,7 @@ html, body {
   height: auto;
 }
 
-/* Suuremate ekraanide jaoks (contact-box) */
+/* Suuremate ekraanide jaoks */
 @media (min-width: 1200px) {
   .contact-box {
     width: 370px;
@@ -110,6 +103,61 @@ html, body {
   .info-box {
     margin-left: 200px;
     margin-right: 50px;
+  }
+}
+
+/* Väiksemate ekraanide jaoks */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 5% 5%;
+    gap: 2vw;
+    margin-top: 0;
+  }
+
+  .contact-box {
+    width: 90%;
+    height: auto;
+    padding: 4vw 3vw;
+    box-shadow: none;
+  }
+
+  .info-box {
+    padding-left: 0;
+    margin-top: 8vw;
+    text-align: center;
+    width: 100%;
+  }
+
+  .info-box h1 {
+    font-size: clamp(18px, 6vw, 28px);
+    margin-bottom: 5vw;
+  }
+
+  .Nool1 img {
+    width: 70%;
+    max-width: 300px;
+  }
+}
+
+/* Väiksemate ekraanide jaoks */
+@media (max-width: 480px) {
+  .content-container {
+    padding: 5%;
+  }
+
+  .contact-box {
+    width: 100%;
+    padding: 6vw 4vw;
+    height: auto;
+  }
+
+  .info-box h1 {
+    font-size: clamp(16px, 8vw, 24px);
+  }
+
+  .Nool1 img {
+    width: 80%;
+    max-width: 250px;
   }
 }
 

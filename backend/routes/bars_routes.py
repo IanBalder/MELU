@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from models.bars import Bar
-from app import db
+from ..db.models.bars import Bar
+from ..app import db
 
-bars_bp = Blueprint('users', __name__)
+bars_bp = Blueprint('bars', __name__)
 
 @bars_bp.route('/bars', methods=['POST'])
 def create_user():
@@ -21,10 +21,10 @@ def create_user():
     return jsonify({'message': 'User created successfully'}), 201
 
 @bars_bp.route("/fetch-bars", methods=["GET"])
-def test_fetch():
+def fetch_bars():
     try:
         bars = Bar.query.all()
-        return jsonify(users=[{
+        return jsonify(bars=[{
             "id": bar.id,
             "name": bar.name,
             "email": bar.email,
@@ -33,6 +33,6 @@ def test_fetch():
             "description": bar.description,
             "image": bar.image,
             "open_hours": bar.open_hours,
-        } for bar in bars])
+        } for bar in bars]), 200
     except Exception as e:
         return jsonify(error=str(e)), 500

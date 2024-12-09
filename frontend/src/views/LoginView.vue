@@ -1,3 +1,15 @@
+<script>
+export default {
+  name: 'LoginPage',
+  data() {
+    return {
+      username: '',
+      password: ''
+    };
+  },
+};
+</script>
+
 <template>
   <div class="content-container">
     <div class="container">
@@ -24,18 +36,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'LoginPage',
-  data() {
-    return {
-      username: '',
-      password: ''
-    };
-  },
-};
-</script>
 
 <style scoped>
 * {
