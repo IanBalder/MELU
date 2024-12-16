@@ -3,6 +3,7 @@ import LandingPage from '../views/LandingPage.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import ProfileView from "../views/ProfileView.vue";
+import AccountHomeView from "../views/AccountHomeView.vue";
 
 function isLoggedIn(): boolean {
   const token = localStorage.getItem('jwt');
@@ -14,6 +15,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: LandingPage
+  },
+  {
+    path: "/main",
+    name: "AccountHomeView",
+    component: AccountHomeView
   },
   {
     path: '/about',
@@ -39,11 +45,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'profile',
     component: ProfileView,
   },
-  {
+  /*{
     path: '/barmenuview',
     name: 'barmenuview',
     component: BarMenuView,
-  }
+  }*/
 ]
 
 const router = createRouter({
