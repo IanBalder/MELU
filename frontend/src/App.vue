@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TopBar />
+    <LandingBar />
   </div>
 </template>
 
@@ -22,12 +22,12 @@
 
 <script>
 import axios from 'axios';
-import TopBar from "@/components/TopBar.vue";
+import LandingBar from "@/components/LandingBar.vue";
 
 export default {
   name: 'App',
   components: {
-    TopBar
+    LandingBar
   },
 
   data() {
