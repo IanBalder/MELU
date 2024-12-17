@@ -15,6 +15,7 @@ async function login() {
   responseMessage.value = "";
   isError.value = false;
 
+  // Basic form validation
   if (!username.value || !password.value) {
     responseMessage.value = "Both fields are required.";
     isError.value = true;
@@ -27,14 +28,33 @@ async function login() {
       password: password.value,
     });
 
+    // If login is successful
     if (response.status === 200) {
+      console.log("Redirecting to /explore");
       responseMessage.value = "Login successful!";
       isError.value = false;
-      router.push("/dashboard"); // Redirect to dashboard
+
+      // Save JWT token or user data if needed
+      localStorage.setItem('access_token', response.data.token); // Example of saving a token
+
+      // Redirect to explore page after successful login
+      router.push("/explore");
+
+      window.location.reload();
+    } else {
+      // Handle unexpected responses
+      responseMessage.value = "Unexpected response from server.";
+      isError.value = true;
     }
   } catch (error) {
     console.error("Error during login:", error);
-    responseMessage.value = "Login failed. Please check your credentials.";
+
+    // Check error response for better error messaging
+    if (error.response && error.response.data) {
+      responseMessage.value = error.response.data.message || "Login failed. Please check your credentials.";
+    } else {
+      responseMessage.value = "Network or server error. Please try again later.";
+    }
     isError.value = true;
   }
 }

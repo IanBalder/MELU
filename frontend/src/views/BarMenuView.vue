@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const barId = route.query.id;
+console.log('Selected Bar ID:', barId);
 
 </script>
 
@@ -10,7 +15,8 @@
         <!-- Pildi ja nime ala -->
         <div class="profile-info">
           <div class="profile-image"></div>
-          <h1 class="bar-name">Baari nimi</h1>
+          <h1 class="bar-name">Baari nimi.</h1>
+          <p>Selected Bar ID: {{ barId }}</p>
         </div>
       </div>
     </div>

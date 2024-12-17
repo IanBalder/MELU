@@ -35,7 +35,8 @@ async function register() {
       password: password.value,
     });
     if (response.status === 201) {
-      router.push('/dashboard'); // Redirect to dashboard
+      router.push('/explore');
+      window.location.reload();
     }
   } catch (error) {
     console.error('Error during registration:', error);
