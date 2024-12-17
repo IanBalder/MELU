@@ -1,23 +1,28 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const logout = () => {
+  localStorage.removeItem('access_token');
+
+  router.push('/login');
+  window.location.reload();
+};
 </script>
 
 <template>
   <div class="profile-container">
 
-    <!-- Profiili kaart -->
     <div class="profile-card">
       <div class="profile-view">
-        <!-- Profiilipilt -->
         <img class="profile-image" src="@/assets/human_logo.svg" />
 
-        <!-- Kasutaja nimi ja e-mail -->
         <h2>Peeter Nurmesalu <span class="edit-icon">✏️</span></h2>
         <p>peeter.nurmesalu@gmail.com</p>
 
-        <button class="logout-button">Log out</button>
+        <button class="logout-button" @click="logout">Log out</button>
 
-        <!-- Info sektsioon (nupud) -->
         <div class="info-section">
           <button class="info-button">Comments</button>
           <button class="info-button">Threads</button>
@@ -41,17 +46,17 @@ body, html {
   align-items: center;
   height: 100%;
   position: relative;
-  padding: 20px; /* Jäta servadele ruumi mobiilivaates */
+  padding: 20px;
 }
 
 .profile-card {
   background-color: #fff;
-  padding: 5%; /* Suhteline polster */
+  padding: 5%;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 400px;
-  width: 100%; /* Kohandub ekraaniga */
+  width: 100%;
 }
 
 .profile-image {
@@ -81,7 +86,7 @@ h2 {
   gap: 20px;
   justify-content: center;
   margin-top: 30px;
-  flex-wrap: wrap; /* Mobiilivaates liiguvad nupud uuele reale */
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
@@ -102,5 +107,4 @@ h2 {
     gap: 10px;
   }
 }
-
 </style>

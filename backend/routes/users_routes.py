@@ -5,15 +5,31 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
 import re
+from functools import wraps
 
-# Create the Blueprint for users
 users_bp = Blueprint('users', __name__)
-
-# Secret key for encoding JWTs (keep this safe, you may want to store it in environment variables)
 SECRET_KEY = 'su_ema'
 EMAIL_REGEX = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
 
-# Register new user
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({'error': 'Token is missing'}), 401
+
+        try:
+            token = token.split(' ')[1] if "Bearer " in token else token
+            decoded = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+            request.user = decoded
+        except jwt.ExpiredSignatureError:
+            return jsonify({'error': 'Token has expired'}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({'error': 'Invalid token'}), 401
+
+        return f(*args, **kwargs)
+    return decorated
+
 @users_bp.route('/register', methods=['POST'])
 def register_user():
     data = request.get_json()
@@ -22,19 +38,20 @@ def register_user():
     if not re.match(EMAIL_REGEX, email):
         return jsonify({'error': 'Invalid email format'}), 400
 
-    # Hash the password before storing it using pbkdf2:sha256
+    if User.query.filter_by(email=email).first():
+        return jsonify({'error': 'Email is already in use'}), 400
+
     hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
 
     new_user = User(
         username=data['username'],
-        password=hashed_password,  # Store the hashed password
+        password=hashed_password,
         email=data['email']
     )
 
     db.session.add(new_user)
     db.session.commit()
 
-    # Create JWT token after successful registration
     token = jwt.encode({
         'user_id': new_user.id,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1)
@@ -42,15 +59,12 @@ def register_user():
 
     return jsonify({'message': 'User created successfully', 'token': token}), 201
 
-
-# User login
 @users_bp.route('/login', methods=['POST'])
 def login():
     data = request.json
     user = User.query.filter_by(username=data.get("username")).first()
 
     if user and check_password_hash(user.password, data.get("password")):
-        # Generate JWT token on successful login
         token = jwt.encode({
             'user_id': user.id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1)
@@ -59,9 +73,8 @@ def login():
     else:
         return jsonify({'message': 'Invalid username or password'}), 401
 
-
-# Fetch all users (for testing or admin purposes)
 @users_bp.route('/users', methods=['GET'])
+@token_required
 def fetch_users():
     try:
         users = User.query.all()
@@ -73,3 +86,11 @@ def fetch_users():
         } for user in users])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@users_bp.route('/api/check-email', methods=['POST'])
+def check_email():
+    data = request.json
+    email = data.get('email')
+    if User.query.filter_by(email=email).first():
+        return jsonify({"exists": True}), 200
+    return jsonify({"exists": False}), 200

@@ -1,39 +1,14 @@
-<script>
-export default {
-  name: 'LoginPage',
-  data() {
-    return {
-      username: '',
-      password: ''
-    };
-  },
-};
+<script setup lang="ts">
+import { ref } from 'vue';
+import UserLogin from "@/components/UserLogin.vue";
+
+const username = ref('');
+const password = ref('');
 </script>
 
 <template>
-  <div class="content-container">
-    <div class="container">
-      <div class="logo">
-        <img src="@/assets/logo.svg">
-      </div>
-
-      <div class="auth-tabs">
-        <router-link to="/login">Login</router-link>
-      </div>
-
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
-          <span class="icon"> <img src="@/assets/human_logo.svg"> </span>
-          <input type="text" placeholder="Username or email" v-model="username">
-        </div>
-        <div class="form-group">
-          <span class="icon"> <img src="@/assets/lock.svg"> </span>
-          <input type="password" placeholder="Password" v-model="password">
-        </div>
-
-        <button type="submit" class="btn">Login</button>
-      </form>
-    </div>
+  <div>
+    <UserLogin />
   </div>
 </template>
 
