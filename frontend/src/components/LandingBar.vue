@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: 'topBar',
+  name: 'LandingBar',
   methods: {
     closeMenu() {
       const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
@@ -22,8 +22,8 @@ export default {
     <label for="menu-toggle" class="hamburger">☰</label>
 
     <div class="auth-links">
-      <router-link class="auth-link" to="/explore">Explore</router-link>
-      <router-link class="auth-link" to="/profile">Profile</router-link>
+      <router-link class="auth-link" to="/login">Login</router-link>
+      <router-link class="auth-link" to="/register">Register</router-link>
       <router-link class="auth-link" to="/about">Contacts</router-link>
     </div>
 
@@ -105,7 +105,6 @@ nav {
   font-weight: bold;
   transition: opacity 0.4s ease, right 1s ease;
   opacity: 0;
-  z-index: 1000;
 }
 
 /* Responsiivsus */
@@ -126,7 +125,6 @@ nav {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     gap: 20px;
-    z-index: 1000;
   }
 
   .hamburger {

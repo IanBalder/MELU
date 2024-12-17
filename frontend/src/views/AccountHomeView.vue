@@ -1,24 +1,47 @@
-
 <script setup lang="ts">
-import Bar from '@/components/Bar.vue';
+import BarPreview from "@/components/BarPreview.vue";
+import axios from "axios";
+import {onMounted, ref} from "vue";
 
+const errorMsg = ref('');
+const barsList = ref([]);
+
+async function fetchBars() {
+
+  try {
+    const response = await axios.get("http://localhost:5000/api/fetch-bars");
+
+    if (response.status === 200) {
+      barsList.value = response.data;
+    } else {
+      console.log("Failed to fetch bars: "  + response.data);
+    }
+
+  } catch (err: any) {
+    errorMsg.value = "Failed to fetch bars: " + err.message;
+  }
+}
+
+onMounted(() => {
+  fetchBars()
+})
 </script>
 
 <template>
   <div>
     <div v-if="loading">Loading...</div>
     <div v-else-if="error" class="error">
-      <p>{{ error }}</p>
+      <p>{{ errorMsg }}</p>
     </div>
     <div v-else>
-      <!-- Popular Bars -->
+      <!--Popular Bars-->
       <div class="popular">
         <h1 class="text-popular">Popular</h1>
         <div class="popular-bars">
-          <Bar
-            v-for="bar in bars.slice(0, 3)"
+          <BarPreview
+            v-for="bar in barsList"
             :key="bar.id"
-            :bar="bar"
+            :barObject="bar"
           />
         </div>
       </div>
@@ -27,11 +50,6 @@ import Bar from '@/components/Bar.vue';
       <div class="cheap">
         <h1 class="text-cheap">Cheap</h1>
         <div class="cheap-bars">
-          <Bar
-            v-for="bar in bars.slice(3, 6)"
-            :key="bar.id"
-            :bar="bar"
-          />
         </div>
       </div>
 
@@ -39,11 +57,6 @@ import Bar from '@/components/Bar.vue';
       <div class="expensive">
         <h1 class="text-expensive">Expensive</h1>
         <div class="expensive-bars">
-          <Bar
-            v-for="bar in bars.slice(6, 9)"
-            :key="bar.id"
-            :bar="bar"
-          />
         </div>
       </div>
     </div>
@@ -99,4 +112,3 @@ import Bar from '@/components/Bar.vue';
   margin: 20px;
 }
 </style>
-
