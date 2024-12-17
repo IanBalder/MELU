@@ -25,29 +25,6 @@ async function fetchBars() {
 onMounted(() => {
   fetchBars()
 })
-
-const errorMsg = ref('');
-const barsList = ref([]);
-
-async function fetchBars() {
-
-  try {
-    const response = await axios.get("http://localhost:5000/api/fetch-bars");
-
-    if (response.status === 200) {
-      barsList.value = response.data;
-    } else {
-      console.log("Failed to fetch bars: "  + response.data);
-    }
-
-  } catch (err: any) {
-    errorMsg.value = "Failed to fetch bars: " + err.message;
-  }
-}
-
-onMounted(() => {
-  fetchBars()
-})
 </script>
 
 <template>
